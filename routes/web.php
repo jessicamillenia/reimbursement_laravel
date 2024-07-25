@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ReimburseController;
 use App\Http\Controllers\AccountController;
 
 /*
@@ -23,8 +24,8 @@ Route::post('/login/check', [LoginController::class, 'authenticate'])->name('che
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::resource('reimburse', ReimburseController::class);
+    Route::post('reimburse/{id}/reject', [ReimburseController::class, 'reject'])->name('reimburse.reject');
+    Route::post('reimburse/{id}/approve', [ReimburseController::class, 'approve'])->name('reimburse.approve');
     Route::resource('account', AccountController::class);
-    Route::get('/home', function () {
-        return view('welcome');
-    })->name('home');
 });
