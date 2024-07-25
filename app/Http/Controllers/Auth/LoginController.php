@@ -26,7 +26,7 @@ class LoginController extends Controller
 
         if ($user && Hash::check($request->input('password'), $user->password)) {
             Auth::login($user);
-            return redirect()->intended('/home');
+            return redirect()->intended('/reimburse');
         } else {
             session(['notif' => 'Your credentials didn\'t match. Please try again.']);
         }
