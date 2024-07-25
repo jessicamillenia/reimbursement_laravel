@@ -71,20 +71,6 @@
                 <span class="link-sidebar">ACCOUNTS</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {{ Request::segment(1) === 'manageReimburse' ? 'active' : '' }}" href="{{route('managereimburse')}}">
-                <i class="bi bi-book"></i>
-                <span class="link-sidebar">MANAGE REIMBURSE</span>
-            </a>
-          </li>
-          @endif
-          @if (Auth::guard('web')->user()->jabatan == 'Finance')
-          <li class="nav-item">
-            <a class="nav-link {{ Request::segment(1) === 'manageReimburse' ? 'active' : '' }}" href="{{route('managereimburse')}}">
-                <i class="bi bi-people feather"></i>
-                <span class="link-sidebar">MANAGE REIMBURSE</span>
-            </a>
-          </li>
           @endif
           <li class="nav-item">
             <a class="nav-link  {{ Request::segment(1) === 'reimbursement' ? 'active' : '' }}" href="{{route('reimburse.index')}}">
@@ -107,45 +93,6 @@
 </div>
 
 {{-- <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> --}}
-<script>
-    function fileValidation(){
-      var input, file;
-      input = document.getElementById('photo');
-      file = input.files[0];
-  
-      var fileInput = document.getElementById('photo');
-      var filePath = fileInput.value;
-      let img = new Image()
-        img.src = window.URL.createObjectURL(event.target.files[0])
-        img.onload = () => {
-          if(img.width!=img.height) {
-          alert('Your image is not 1:1 or not square!');
-
-          fileInput.value = "";
-          return false;
-        }
-      }
-      var allowedExtensions = /(\.jpg)$/i;
-      var allowedExtensions2 = /(\.png)$/i;
-      var allowedExtensions3 = /(\.jpeg)$/i;
-      if(!allowedExtensions.exec(filePath) && !allowedExtensions2.exec(filePath) && !allowedExtensions3.exec(filePath)){
-          alert('Silahkan upload berkas yang berekstensi jpg atau png!');
-  
-          fileInput.value = "";
-          return false;
-      } else if(file.size > 1048576){
-          alert('Silahkan upload berkas maksimal 1MB!');
-  
-          fileInput.value = "";
-          return false;
-      } else if(imgWidth!=imgHeight) {
-          alert('Your image is not 1:1 or not square!' + imgHeight + " " + imgWidth);
-
-          fileInput.value = "";
-          return false;
-      }
-    }
-</script>
 @yield('script')
 </body>
 </html>
